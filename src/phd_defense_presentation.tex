@@ -1,0 +1,258 @@
+\documentclass{beamer}
+\usetheme{metropolis} % Use metropolis theme
+
+\usepackage[a-2u]{pdfx}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{sansmath}  % enables switching to serif fonts also in math env
+\usepackage{chemformula}
+\usepackage{chemfig}
+\usepackage[
+	font=tiny,
+	labelfont={tiny}
+]{caption}
+\usepackage{tabularx}  % tables with fixed width
+\usepackage{booktabs}  % better looking tables, more space after horizontal
+% rule (use \midrule) and possibility of bold line usage (\toprule and
+% \bottomrule)
+
+%%% tikz
+\usepackage{tikz}  % nice images in LaTeX
+\usetikzlibrary{%
+	arrows.meta,%
+	shapes,%
+	intersections,%
+	decorations.markings,%  arrows
+	decorations.pathmorphing,%  zigzag, snake and other paths
+	calc,%
+	positioning%  left = 1cm and 3cm of SomeNode
+}
+
+% TikZ macros
+\newcommand{\mypgfextractangle}[3]{%
+	\pgfmathanglebetweenpoints{%
+		\pgfpointanchor{#2}{center}}{%
+		\pgfpointanchor{#3}{center}}
+	\global\let#1\pgfmathresult
+}
+
+\newcommand{\icm}{cm$^{-1}$}  % reciprocal centimeters
+%%% upgright greek letters
+\newcommand{\g}[1]{\foreignlanguage{greek}{#1}}
+
+
+\title{Studium struktury a interakcí nukleových kyselin pomocí rezonančního
+Ramanova rozptylu}
+\date{}
+%\date{15. prosince 2021}
+%\author{Mgr. Jakub Klener}
+%\institute{%
+	%\parbox[c]{0.14\textwidth}{%
+		%\includegraphics[width=0.12\textwidth]{assets/logo.pdf}%
+	%}%
+	%\parbox[c]{0.8\textwidth}{Matematicko-fyzikální\\fakulta\\Univerzita Karlova}
+%}
+\author{%
+	\parbox[c]{0.25\textwidth}{%
+		\includegraphics[width=0.22\textwidth]{assets/logo.pdf}%
+	}%
+	\parbox[c]{0.7\textwidth}{%
+		Jakub Klener\\%
+		Matematicko-fyzikální fakulta\\%
+		Univerzita Karlova\\%
+		15. prosince 2021
+	}%
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Obsah}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+
+\section{Rezonanční Ramanův rozptyl a nukleové kyseliny}
+
+\begin{frame}{Nukleové kyseliny}
+\begin{itemize}
+	\item Je tvořena kyselinou fosforečnou, pentózou a nukleovými bázemi
+	\item Zabezpečují uchování a účastní se exprese genetické informace
+	\item Mohou zaujmout mnoho různých konformací
+\end{itemize}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.6\columnwidth]{assets/dna_conformations}
+	\caption*{
+		Pandia N. et al., 2021.
+		\emph{Biochim. Biophis. Acta.}
+		\textbf{1876}(2), 188594.
+	}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Ramanova spektroskopie}
+\begin{center}
+	\resizebox{1\linewidth}{!}{\input{raman}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Proč UV rezonanční Ramanova spektroskopie?}
+\begin{itemize}
+	\item Zesílení, typicky o 1 -- 2 řády
+	\item Zjednodušení spektra díky selektivnímu zesílení
+	\item Hlavní třídy biomolekul mají elektronový absorpční přechod v~UV
+	\item Fluorescence hlavně nečistot je i díky rezonančnímu přenosu často na
+		větších vlnových délkách
+\end{itemize}
+\end{frame}
+
+
+\section{Stavba spektrometru}
+
+\begin{frame}{Design spektrometru}
+\begin{center}
+	\resizebox{1\linewidth}{!}{\input{backscattering_schema}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Kalibrace}
+\begin{center}
+	\resizebox{1\linewidth}{!}{\input{pt_calibration/pt_calibration}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Detail rotační cely}
+\begin{center}
+	\resizebox{.5\linewidth}{!}{\input{spinning_cell_drawing}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Detail termostatovaného držáku}
+\begin{center}
+	\includegraphics[width=.49\columnwidth]%
+			{thermostated_holder_drawing/3D01}
+	\includegraphics[width=.49\columnwidth]%
+		{thermostated_holder_drawing/3D02}
+\end{center}
+\end{frame}
+
+\begin{frame}{Optimalizace měření -- odečet intenzity}
+\begin{center}
+	\resizebox{1\linewidth}{!}{\input{power_optimization_triplexes/%
+		power_optimization_triplexes_pU}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Optimalizace měření -- pokles v čase}
+\begin{center}
+	\resizebox{1\linewidth}{!}{\input{power_optimization_triplexes/%
+		power_optimization_triplexes}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Interpretace spekter}
+\begin{center}
+	\resizebox{1\columnwidth}{!}{\input{interpretation/at/interpretation_at}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Interpretace spekter}
+\begin{center}
+	\includegraphics[width=1\columnwidth,page=1,trim={2cm 13.6cm 0 4cm},clip]%
+		{interpretation/at/interpretation_table_at}
+\end{center}
+\end{frame}
+
+
+\section{Použití spektrometru ke studiu nukleových kyselin}
+
+\begin{frame}{Komplexy PolyA a PolyU}
+\begin{center}
+	\resizebox{1\columnwidth}{!}{\input{rna_triplex/rna_triplex_spectra}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Komplexy PolyA a PolyU}
+\begin{center}
+	$2 (\text{polyA} \cdot \text{polyU}) \rightarrow
+		\text{polyU} \cdot \text{polyA} \cdot \text{polyU} + \text{polyA}$
+\end{center}
+\begin{center}
+	\resizebox{1\columnwidth}{!}{\input{rna_triplex/rna_triplex_mg}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Komplexy PolyA a PolyU}
+\begin{center}
+	\resizebox{1\columnwidth}{!}{\input{rna_triplex/rna_triplex_conc}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Analýza vlivu teploty na strukturu DNA}
+\begin{center}
+	\includegraphics[width=1\columnwidth]{dna_hairpins/structure}
+	\includegraphics[width=.9\columnwidth]{dna_hairpins/melting_spectra}
+\end{center}
+\end{frame}
+
+\begin{frame}{Analýza vlivu teploty na strukturu DNA}
+\begin{center}
+	\includegraphics[width=.9\columnwidth]{dna_hairpins/pca_hairpin}
+\end{center}
+\end{frame}
+
+\begin{frame}{Analýza vlivu teploty na strukturu DNA}
+\begin{center}
+	\includegraphics[width=.9\columnwidth]{dna_hairpins/forms_spectra}
+\end{center}
+\end{frame}
+
+\begin{frame}{Analýza vlivu teploty na strukturu DNA}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\columnwidth]{tel22/quadruplex_forms}\\
+	\caption*{
+		Benabou S. et al., 2019.
+		\emph{Sci. Rep.}
+		\textbf{9}(15807), 1.
+	}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Studium přechodu mezi paralelním a antiparalelním\\ kvadruplexem}
+\begin{center}
+	\resizebox{1\columnwidth}{!}{\input{tel22/tel22_spectra}}
+\end{center}
+\end{frame}
+
+
+\refstepcounter{section}% Increase section counter
+\sectionmark{Shrnutí}% Add section mark (header)
+\addcontentsline{toc}{section}{\protect\numberline{}\thesection. Shrnutí\par}%
+
+\begin{frame}{Shrnutí}
+\begin{itemize}
+	\item Byl postaven UV Ramanův spektrometr
+	\begin{itemize}
+		\item Byla vyvinuta metoda kalibrace vlnočtové škály
+		\item Možnost měření v pravoúhlé geometrii i geometrii zpětného rozptylu
+		\item Zkonstruována rotační cela
+		\item Zkonstruován držák na kyvety umožňující teplotně závislá měření
+		\item Optimalizovány podmínky měření
+	\end{itemize}
+	\item Vytvořena interpretační tabulka rezonančních Ramanových spekter
+		nukleových kyselin
+	\item Nalezená metodologie byla aplikována na několik strukturních studií
+		nukleových kyselin
+\end{itemize}
+\end{frame}
+
+
+\end{document}

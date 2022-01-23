@@ -1,0 +1,70 @@
+\begin{tikzpicture}[font=\sffamily]
+	\node (Thymine) {
+		\chemfig{
+			N1*6([:30](-sugar)-C2(=O)-N3(-@{TH3}H)-C4(=@{TO4}O)-C5(-CH_3)=C6(-H)-)
+		}
+	};
+	\node [below = 0 of Thymine] {Thymine};
+	\node [right = of Thymine, shift = {(0,0.0cm)}] (Adenine) {
+		\chemfig{
+			[:90]N3*6(-C4*5(-N9(-sugar)-C8(-H)=N7-#(,2.5mm))=C5-C6(-@{AH6}H_2 N)=@{AN1}N1-C2(-H)=)
+		}
+	};
+	\node [below = -0.7cm of Adenine] {Adenine};
+\end{tikzpicture}
+
+\chemmove{%  needs to be outside the tikzpicture so that it doesn't introduce
+% infinite loop because the original tikzpicture is resized by the links
+	\draw[-,dash pattern=on 2pt off 2pt] (AH6)--(TO4);
+	\draw[-,dash pattern=on 2pt off 2pt] (AN1)--(TH3);
+}
+
+\begin{tikzpicture}[font=\sffamily]
+	\node (Cytosine) {
+		\chemfig{
+			N1*6([:30](-sugar)-C2(=@{CO2}O)-@{CN3}N3=C4(-N@{CH4}H_2)-C5(-H)=C6(-H)-)
+		}
+	};
+	\node [below = 0 of Cytosine] {Cytosine};
+	\node [right = of Cytosine, shift = {(0,0.0cm)}] (Guanine) {
+		\chemfig{
+			[:90]N3*6(-C4*5(-N9(-sugar)-C8(-H)=N7-#(,2.5mm))=C5-C6(=@{GO6}O)-N1(-@{GH1}H)-C2(-@{GH2}H_2 N)=)
+		}
+	};
+	\node [below = -0.7cm of Adenine] {Guanine};
+\end{tikzpicture}
+
+\chemmove{%  needs to be outside the tikzpicture so that it doesn't introduce
+% infinite loop because the original tikzpicture is resized by the links
+	\draw[-,dash pattern=on 2pt off 2pt] (GO6)--(CH4);
+	\draw[-,dash pattern=on 2pt off 2pt] (GH1)--(CN3);
+	\draw[-,dash pattern=on 2pt off 2pt] (GH2)--(CO2);
+}
+
+\begin{tikzpicture}[font=\sffamily]
+	\node (Deoxyribose) {
+		\chemfig[cram width=2pt]{
+			C1'?(-[:90]nucleobase)%
+				<[:-135,1]C2'%
+					([:90,0.7]-H)%
+					([:-90,0.7]-H)%
+				-[:180,,,,line width = 2pt]C3'%
+					([:90,0.7]-H)%
+					([:-90,0.7]-O-[@{op,.5},1]\hphantom{P})%
+				>[:135,1]C4'%
+					([:90,1]-C5'%
+						(-[:0]H)%
+						(-[:90]H)%
+						-[:180]O-[:180]P%
+							(-[:-90]O^{-})%
+							(=[:180]O)%
+						-[@{cl,.5}]\hphantom{O}%
+					)%
+					([:-90,0.7]-H)%
+				-[:25,1.35]O4'?
+		}
+	};
+	\node [below = 0 of Deoxyribose] {2'-deoxyribose};
+\end{tikzpicture}
+
+\polymerdelim[delimiters = {[]}, h align = false, rotate = -90]{cl}{op}
